@@ -22,12 +22,12 @@ gem 'puma', '~> 5.0'
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem 'importmap-rails'
 
-gem 'rspec-core'
-gem 'rspec-rails'
-gem 'rspec-expectations'
+gem 'database_cleaner'
 gem 'factory_bot_rails'
 gem 'faker'
-gem 'database_cleaner'
+gem 'rspec-core'
+gem 'rspec-expectations'
+gem 'rspec-rails'
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem 'turbo-rails'
 

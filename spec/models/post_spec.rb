@@ -37,13 +37,13 @@ RSpec.describe Post, type: :model do
   end
 
   it '#recent_comments should show 5 recent comments on post' do
-    Comment.new(post: post, user_id: user1.id, text: 'Hi Tom!').save
-    Comment.new(post: post, user_id: user1.id, text: 'Hi Tom!').save
-    Comment.new(post: post, user_id: user1.id, text: 'Hi Tom!').save
-    Comment.new(post: post, user_id: user1.id, text: 'Hi Tom!').save
-    Comment.new(post: post, user_id: user1.id, text: 'Hi Tom!').save
-    Comment.new(post: post, user_id: user1.id, text: 'Hi Tom!').save
-    Comment.new(post: post, user_id: user1.id, text: 'Hi Tom!').save
+    Comment.new(post:, user_id: user1.id, text: 'Hi Tom!').save
+    Comment.new(post:, user_id: user1.id, text: 'Hi Tom!').save
+    Comment.new(post:, user_id: user1.id, text: 'Hi Tom!').save
+    Comment.new(post:, user_id: user1.id, text: 'Hi Tom!').save
+    Comment.new(post:, user_id: user1.id, text: 'Hi Tom!').save
+    Comment.new(post:, user_id: user1.id, text: 'Hi Tom!').save
+    Comment.new(post:, user_id: user1.id, text: 'Hi Tom!').save
 
     recent_comments = post.recent_comments
 
