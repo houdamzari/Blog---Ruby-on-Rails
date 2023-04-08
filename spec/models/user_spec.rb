@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
     expect(check).to eq(false)
   end
 
-  it 'posts_counter should be greater than or equal to zero' do
+  it 'postscounter should be greater than or equal to zero' do
     user2 = User.new(name: 'John', photo: 'http//:www.myphoto.com', bio: 'software developer from Germany')
     check = user2.posts_counter
 

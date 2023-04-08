@@ -1,1 +1,46 @@
-<h1>list of all the users </h1>
+<section id="user_details">
+  <div class="user-info">
+    <div class="user-photo">
+      <%= image_tag @user.photo, class: "profile-photo" %>
+    </div>
+    <div class="badge">
+      <h1 class="userName"><%= @user.name %></h1>
+      <div class="badge-numbers">
+        <h3 class="postCount">
+          Number of posts: <%= @user.postscounter %>
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="bio">
+    <h2>Bio</h2>
+    <p class="bio_text"><%= @user.bio %></p>
+  </div>
+ <div class="posts_container">
+    <% @recent_posts.each_with_index do |post, index| %>
+      <div class="post">
+        <h3>Post #<%= index+1 %></h3>
+        <p class="post_text"><%= post.text %></p>
+        <p class="commentsCount">
+          Comments: <%= post.comments_counter %>,
+          Likes: <%= post.likes_counter %>
+        </p>
+      </div>
+      <br>
+    <% end %>
+    <br>
+    <div class="btns">
+    <button class="seePosts">
+      <%= link_to "See all posts", user_posts_path(@user) %>
+    </button>
+    <button class="seePosts createPost">
+      <%= link_to "create post", new_user_post_path(@user) %>
+    </button>
+    <button class="seePosts home">
+      <%=link_to 'home',  '/users' %>
+    </button>
+    </div>
+    
+  </div>
+</section>

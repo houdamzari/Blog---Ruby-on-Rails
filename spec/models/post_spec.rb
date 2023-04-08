@@ -17,7 +17,7 @@ RSpec.describe Post, type: :model do
     expect(post_length).to be <= 250
   end
 
-  it 'posts_counter should be greater than or equal to zero' do
+  it 'postscounter should be greater than or equal to zero' do
     comments_counter = post.comments_counter
 
     expect(comments_counter).to be >= 0
