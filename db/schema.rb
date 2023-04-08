@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_03_30_105255) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "adminpack"
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
@@ -32,6 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_105255) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "post_id"
+    t.integer "author_id"
     t.string "title"
     t.string "text"
     t.integer "comments_counter"
