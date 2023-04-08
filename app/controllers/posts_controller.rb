@@ -11,6 +11,6 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     @post_comments = Comment.where(post_id: @post)
     @likes = @post.likes
-    @user_posts = @user.posts 
+    @user_posts = @user.posts
   end
 end
