@@ -3,7 +3,7 @@ class LikesController < ApplicationController
 
   def new
     @like = Like.new
-    @like.user = current_user
+    @like.user = User.find(params[:user_id])
     @like.post = @post
 
     if @like.save
