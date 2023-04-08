@@ -1,1 +1,20 @@
-<h1>details for a given user</h1>
+<section id="all_Users">
+  <% @users.each do |user| %>
+    <div class="user-info">
+      <div class="user-photo"><%= image_tag user.photo, class: "profile-photo"%></div>
+        <div class="badge">
+          <h1 class="userName text-red-700"><%= user.name %></h1>
+          <div class="badge-numbers">
+            <h3 class="postCount">
+              Number of posts: <%= user.postscounter %>
+            </h3>
+            <p class="viewUser">
+              <%= link_to "View Profile", user_path(user.id) %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+    <% end %>
+  </section>
