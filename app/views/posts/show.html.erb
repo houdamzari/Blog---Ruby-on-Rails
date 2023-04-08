@@ -12,7 +12,8 @@
   <h3>comments:</h3>
     <ul>
       <% @post_comments.each do |comment| %>
-        <li><%= @user.name %>: <%= comment.text %></li>
+<li>
+  <%= User.find(comment.user_id).name %>: <%= comment.text %></li>
       <% end %>
     </ul>
   </div>

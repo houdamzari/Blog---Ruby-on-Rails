@@ -1,22 +1,17 @@
 class CommentsController < ApplicationController
   before_action :set_post, only: [:create]
 
-  def new
+    def new
     @comment = Comment.new
-    @user = User.where(id: @comment.user_id)
+    @post = Post.find(params[:post_id])
   end
 
-  def create
-    @comment = Comment.new(comment_params)
-    @comment.user_id = current_user.id
-    @comment.user = current_user
-    @comment.post = @post
-
-    if @comment.save
-      on_comment_create_success
-    else
-      on_comment_create_failure
-    end
+    def create
+    @user = current_user
+    @post = Post.find(params[:post_id])
+    @comment = Comment.new(user: @user, post: @post, text: params[:comment][:text])
+    @comment.save
+    redirect_to user_post_path(@user, @post)
   end
 
   private

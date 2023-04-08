@@ -8,9 +8,30 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @user = User.find(params[:user_id])
     @post_comments = Comment.where(post_id: @post)
-    @likes = @post.likes
-    @user_posts = @user.posts
+  end
+
+  def new
+    @user = current_user
+    @post = Post.new
+  end
+
+  def create
+    @user = current_user
+    @post = @user.posts.new(post_params)
+    @post.comments_counter = 0
+    @post.likes_counter = 0
+    if @post.save
+      @post.update_post_counter
+      redirect_to @post
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :text)
   end
 end
