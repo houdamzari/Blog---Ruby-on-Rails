@@ -27,10 +27,8 @@ gem 'factory_bot_rails'
 gem 'faker'
 gem 'rspec-core'
 gem 'rspec-expectations'
-gem 'rspec-rails'
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem 'turbo-rails'
-
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem 'stimulus-rails'
 
@@ -76,9 +74,13 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem 'capybara'
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
 
 gem 'tailwindcss-rails', '~> 2.0'
+
+group :development, :test do
+  gem 'capybara', '>= 3.26'
+  gem 'rspec-rails', '~> 5.0'
+end
