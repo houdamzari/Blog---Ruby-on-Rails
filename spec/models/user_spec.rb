@@ -17,7 +17,7 @@ RSpec.describe User, type: :model do
 
   it 'postscounter should be greater than or equal to zero' do
     user2 = User.new(name: 'John', photo: 'http//:www.myphoto.com', bio: 'software developer from Germany')
-    check = user2.posts_counter
+    check = user2.postscounter
 
     expect(check).to be >= 0
   end

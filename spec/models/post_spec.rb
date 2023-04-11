@@ -31,7 +31,7 @@ RSpec.describe Post, type: :model do
 
   it '#update_post_counter should increase post_counter by 1' do
     post.update_post_counter
-    check = user1.posts_counter
+    check = user1.postscounter
 
     expect(check).to be > 0
   end
