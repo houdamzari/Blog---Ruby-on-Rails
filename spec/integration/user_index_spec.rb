@@ -15,7 +15,6 @@ RSpec.describe 'UsersIndex', type: :system do
                                   likes_counter: 0)
   end
 
-
   after do
     # Clean up created data
     @user1.destroy if @user1.present?

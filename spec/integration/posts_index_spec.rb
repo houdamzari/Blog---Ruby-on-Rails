@@ -20,7 +20,6 @@ RSpec.describe 'User testing', type: :feature do
       end
     end
 
-
     describe 'show page' do
       before(:example) do
         @user = User.create(name: 'Jane Doe', photo: 'https://www.someurl.com', bio: 'Fullstack Developer',
@@ -29,8 +28,6 @@ RSpec.describe 'User testing', type: :feature do
                              comments_counter: 1, likes_counter: 1, author: @user)
         @post2 = Post.create(title: 'My Second Post', text: 'Morbi luctus scelerisque sodales.', comments_counter: 1,
                              likes_counter: 1, author: @user)
-        @post3 = Post.create(title: 'My Third Post', text: 'Donec volutpat nibh eu maximus dictum.',
-                             comments_counter: 1, likes_counter: 1, author: @user)
         visit user_path(id: @user.id)
       end
 
