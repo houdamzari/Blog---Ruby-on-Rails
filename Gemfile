@@ -81,6 +81,6 @@ end
 gem 'tailwindcss-rails', '~> 2.0'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 5.0'
   gem 'capybara', '>= 3.26'
+  gem 'rspec-rails', '~> 5.0'
 end

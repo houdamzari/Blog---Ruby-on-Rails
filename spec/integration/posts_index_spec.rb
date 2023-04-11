@@ -3,7 +3,8 @@ require_relative '../rails_helper'
 RSpec.describe 'User testing', type: :feature do
   describe 'index page' do
     before(:example) do
-      @user = User.create(name: 'Jane Doe', photo: 'https://www.someurl.com', bio: 'Fullstack Developer', postscounter: 1)
+      @user = User.create(name: 'Jane Doe', photo: 'https://www.someurl.com', bio: 'Fullstack Developer',
+                          postscounter: 1)
       visit users_path
     end
 
@@ -22,10 +23,14 @@ RSpec.describe 'User testing', type: :feature do
 
     describe 'show page' do
       before(:example) do
-        @user = User.create(name: 'Jane Doe', photo: 'https://www.someurl.com', bio: 'Fullstack Developer', postscounter: 3)
-        @post_1 = Post.create(title: 'My First Post', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', comments_counter: 1, likes_counter: 1, author: @user)
-        @post_2 = Post.create(title: 'My Second Post', text: 'Morbi luctus scelerisque sodales.', comments_counter: 1, likes_counter: 1, author: @user)
-        @post_3 = Post.create(title: 'My Third Post', text: 'Donec volutpat nibh eu maximus dictum.', comments_counter: 1, likes_counter: 1, author: @user)
+        @user = User.create(name: 'Jane Doe', photo: 'https://www.someurl.com', bio: 'Fullstack Developer',
+                            postscounter: 3)
+        @post1 = Post.create(title: 'My First Post', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                             comments_counter: 1, likes_counter: 1, author: @user)
+        @post2 = Post.create(title: 'My Second Post', text: 'Morbi luctus scelerisque sodales.', comments_counter: 1,
+                             likes_counter: 1, author: @user)
+        @post3 = Post.create(title: 'My Third Post', text: 'Donec volutpat nibh eu maximus dictum.',
+                             comments_counter: 1, likes_counter: 1, author: @user)
         visit user_path(id: @user.id)
       end
 
@@ -46,15 +51,15 @@ RSpec.describe 'User testing', type: :feature do
       end
 
       it "should render user's first 3 posts" do
-        expect(page).to have_content(@post_1.text)
-        expect(page).to have_content(@post_2.text)
-        expect(page).to have_content(@post_3.text)
+        expect(page).to have_content(@post1.text)
+        expect(page).to have_content(@post2.text)
+        expect(page).to have_content(@post3.text)
       end
 
       it "should have a button to view all of a user's posts" do
         expect(page).to have_link('See all posts', href: user_posts_path(user_id: @user.id))
       end
-      
+
       it 'should redirects to all posts show page.' do
         click_link 'See all posts'
         expect(page).to have_current_path(user_posts_path(user_id: @user.id))

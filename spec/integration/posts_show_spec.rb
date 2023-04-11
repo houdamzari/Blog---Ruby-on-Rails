@@ -3,10 +3,13 @@ require_relative '../rails_helper'
 RSpec.describe 'Post testing', type: :feature do
   describe 'show page' do
     let(:user) { User.create(name: 'Jane Doe', photo: 'https://www.someurl.com', bio: 'Fullstack Developer', postscounter: 1) }
-    let(:post) { Post.create(title: 'My first post', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',comments_counter: 2, likes_counter: 1, author: user) }
-    let!(:first_comment) { Comment.create(text: 'First comment', user: user, post: post) }
-    let!(:second_comment) { Comment.create(text: 'Second comment', user: user, post: post) }
-    let!(:like) { Like.create(user: user, post: post) }
+    let(:post) do
+      Post.create(title: 'My first post', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                  comments_counter: 2, likes_counter: 1, author: user)
+    end
+    let!(:first_comment) { Comment.create(text: 'First comment', user:, post:) }
+    let!(:second_comment) { Comment.create(text: 'Second comment', user:, post:) }
+    let!(:like) { Like.create(user:, post:) }
 
     before do
       visit user_posts_path(user_id: user.id)
