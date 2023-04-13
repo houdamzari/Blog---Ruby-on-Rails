@@ -1,9 +1,9 @@
 <section id="all_Users">
   <% @users.each do |user| %>
     <div class="user-info">
-      <div class="user-photo"><%= image_tag user.photo, class: "profile-photo"%></div>
+<%= image_tag(user.photo.presence || "default.jpg", class: "profile-photo") %>
         <div class="badge">
-          <h1 class="userName text-red-700"><%= user.name %></h1>
+          <h1 class="text-red-700 userName"><%= user.name %></h1>
           <div class="badge-numbers">
             <h3 class="postCount">
               Number of posts: <%= user.postscounter %>

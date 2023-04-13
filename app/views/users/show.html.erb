@@ -1,7 +1,7 @@
 <section id="user_details">
   <div class="user-info">
     <div class="user-photo">
-      <%= image_tag @user.photo, class: "profile-photo" %>
+<%= image_tag(@user.photo.presence || "default.jpg", class: "profile-photo") %>
     </div>
     <div class="badge">
       <h1 class="userName"><%= @user.name %></h1>
