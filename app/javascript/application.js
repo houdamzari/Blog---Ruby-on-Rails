@@ -1,3 +1,8 @@
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
-import "@hotwired/turbo-rails"
-import "controllers"
+// app/javascript/application.js
+import "@hotwired/turbo-rails";
+import "controllers";
+import * as Rails from "rails-ujs";
+import { Turbo } from "@hotwired/turbo-rails";
+
+Rails.start();
+window.Turbo = Turbo;
