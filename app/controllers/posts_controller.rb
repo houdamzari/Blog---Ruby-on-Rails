@@ -1,8 +1,6 @@
 class PostsController < ApplicationController
-  load_and_authorize_resource :user
-  load_and_authorize_resource :post, through: :user
-
-
+    load_and_authorize_resource
+    
   def index
     @user = User.find(params[:user_id])
     @user_posts = Post.includes(:comments).where(author_id: @user.id)
@@ -12,6 +10,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @user = @post.author_id
     @post_comments = Comment.includes(:user).where(post_id: @post)
   end
 
@@ -41,7 +40,13 @@ class PostsController < ApplicationController
 
 
   def destroy
+    @post.likes.destroy_all
+    @post.comments.destroy_all
     @post.destroy
-    redirect_to user_path(@user), notice: 'Post was successfully deleted.'
+    @user.update(posts_counter: @user.posts_counter - 1)
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: 'Post was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 end

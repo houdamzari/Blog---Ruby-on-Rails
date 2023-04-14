@@ -3,12 +3,12 @@ class Ability
 
   def initialize(user)
     user ||= User.new
-
     if user.admin?
       can :manage, :all
     else
+      can :manage, Post, author_id: user.id
+      can :manage, Comment, author_id: user.id
       can :read, :all
-      can :destroy, Post, author_id: user.id
     end
   end
 end

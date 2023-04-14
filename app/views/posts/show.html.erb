@@ -11,7 +11,11 @@
     </div>
     <p class="P_text"><%= @post.text%></p>
   </div>
-  
+  <% if can? :destroy, @post %>
+<%= form_with url: user_post_path(@user, @post), method: :destroy do |form| %>
+    <%= form.submit "Delete Post" , class: "btn"%>
+  <% end %>
+<% end %>
   <div class="com_on_Post">
   <h3>comments:</h3>
     <ul>

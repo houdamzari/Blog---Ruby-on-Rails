@@ -20,15 +20,14 @@
   <div class="posts_container">
     <% @recent_posts.each_with_index do |post, index| %>
       <div class="post">
-        <h3><%= link_to "Post #{index + 1} by User #{@user.id}", user_post_path(@user, post) %></h3>
+<h3><%= link_to "Post #{index + 1} by User #{@user.id}", user_post_path(@user, post) %></h3>
         <p class="post_text"><%= post.text %></p> <!-- Close the p tag here -->
         <p class="comments-counter">
           Comments: <%= post.comments_counter %>,
           Likes: <%= post.likes_counter %>
         </p>
-        <% if can? :destroy, post %>
-      <%= link_to 'Delete', user_post_path(@user, post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-post' %>
-    <% end %>
+      
+
       </div>
       <br>
     <% end %>
