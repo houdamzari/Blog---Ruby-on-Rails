@@ -1,6 +1,6 @@
 <section id="user_details">
   <div class="user-info">
-    <div class="user-photo"><%= image_tag @user.photo, class: "profile-photo"%></div>
+    <div class="user-photo"><%= image_tag(@user.photo.presence || "default.jpg", class: "profile-photo") %></div>
     <div class="badge">
       <h1 class="userName"><%= @user.name %></h1>
       <div class="badge-numbers">
@@ -17,7 +17,7 @@
         <div class="post">
         <h3><%= post.title %></h3>
         <p class="post_text"><%= post.text %></p>
-        <p class="commentsCount">
+        <p class="comments-counter">
           Comments: <%= post.comments_counter %>,
           Likes: <%= post.likes_counter %>
         </p>
