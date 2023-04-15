@@ -24,8 +24,8 @@
         <div class="links">
           <%= link_to "view post", user_post_path(@user, post) %>
           <div class="add_like">
-            <%= link_to "Add comment", new_user_post_comment_path(user_id: @user, post_id: post)  %>|
-            <%= link_to "Add a like", new_user_post_like_path(user_id: @user, post_id: post.id) %>
+            <%= link_to "Manage comments", new_post_comment_path(user_id: @user, post_id: post)  %>|
+            <%= link_to "Add a like", new_post_like_path(user_id: @user, post_id: post.id) %>
           </div>
         </div>
       </div>

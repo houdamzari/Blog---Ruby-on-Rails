@@ -11,7 +11,11 @@
     </div>
     <p class="P_text"><%= @post.text%></p>
   </div>
-  
+<% if can? :delete, @post %>
+  <%= button_to 'Delete Post', user_post_path(@user, @post), method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+<% end %>
+
   <div class="com_on_Post">
   <h3>comments:</h3>
     <ul>

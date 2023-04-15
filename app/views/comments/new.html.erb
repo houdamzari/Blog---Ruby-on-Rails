@@ -1,6 +1,31 @@
 <section>
+    <h1>Comments for <%= @post.title %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Comment</th>
+      <th>User</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.text %></td>
+        <td><%= comment.user.name %></td>
+        <td>
+          <% if can? :delete, comment %>
+            <%= button_to 'Delete', post_comment_path(@post, comment), method: :delete,
+                          data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
   <h2>Add a comment</h2>
-  <%= form_with model: @comment, url: user_post_comments_path(@post) do |form| %>
+  <%= form_with model: @comment, url: post_comments_path(@post) do |form| %>
     <div>
       <%= form.label :text, class: "form-label" %>
       <%= form.text_field :text, required: true, autofocus: true, placeholder: 'Leave a comment', class: "form-input" %>
