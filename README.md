@@ -101,7 +101,7 @@ To run tests, run the following command accordingly:
 👤 **Houda Mzari**
 
 - GitHub: [@houdamzari](https://github.com/houdamzari)
-- LinkedIn: @[houda-mzari-2304401b1](https://www.linkedin.com/in/houda-mzari-2304401b1/)
+- LinkedIn: @[houda-mzari-2304401b1](https://www.linkedin.com/in/houda-mzari/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
