@@ -18,9 +18,9 @@ class User < ApplicationRecord
   end
 
   def admin?
-    role == "admin"
+    role == 'admin'
   end
-  
+
   private
 
   def set_default_postscounter

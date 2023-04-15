@@ -2,6 +2,8 @@ class CommentsController < ApplicationController
   before_action :set_post, only: [:create]
 
   def new
+    @post = Post.find(params[:post_id])
+    @comments = @post.comments
     @comment = Comment.new
     @post = Post.find(params[:post_id])
   end
@@ -10,12 +12,17 @@ class CommentsController < ApplicationController
     @user = current_user
     @post = Post.find(params[:post_id])
     @comment = Comment.new(user: @user, post: @post, text: params[:comment][:text])
-    if @comment.save
-      redirect_to post_path(@comment.post)
-    else
-      @article = Post.find(params[:post_id])
-      redirect_to post_path(@post)
-    end
+    return unless @comment.save
+
+    redirect_to user_posts_path(@post.author)
+  end
+
+  def destroy
+    @post = Post.find(params[:post_id])
+    @user = @post.author.id
+    @comment = @post.comments.find(params[:id])
+    @comment.destroy
+    redirect_to user_posts_path(@user), notice: 'Comment was successfully deleted.'
   end
 
   private

@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
-    load_and_authorize_resource
-    
+  before_action :set_user, only: %i[new create edit update destroy]
   def index
     @user = User.find(params[:user_id])
     @user_posts = Post.includes(:comments).where(author_id: @user.id)
@@ -10,7 +9,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @user = @post.author_id
+    @user = @post.author
     @post_comments = Comment.includes(:user).where(post_id: @post)
   end
 
@@ -26,10 +25,16 @@ class PostsController < ApplicationController
     @post.likes_counter = 0
     if @post.save
       @post.update_post_counter
-      redirect_to @post
+      redirect_to user_path(@user)
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @post = @user.posts.find(params[:id])
+    @post.destroy
+    redirect_to user_path(@user), notice: 'Post was successfully deleted.'
   end
 
   private
@@ -38,15 +43,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :text)
   end
 
-
-  def destroy
-    @post.likes.destroy_all
-    @post.comments.destroy_all
-    @post.destroy
-    @user.update(posts_counter: @user.posts_counter - 1)
-    respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+  def set_user
+    @user = User.find(params[:user_id])
   end
 end
